@@ -1,16 +1,23 @@
-#TODO: set the package name
-name: my_dart_package
-#TODO: set the package description
-description: A starting point for Dart libraries or applications.
+name: flutter_modules
+description: A library for implementing modularity in Flutter apps.
 version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: ">=2.13.0 <3.0.0"
+  flutter: ">=1.17.0"
 
-# dependencies:
+dependencies:
+  flutter:
+    sdk: flutter
 
 dev_dependencies:
+  # Dependency Injection
+  dart_dependencies_manager:
+    git:
+      url: git@github.com:fabriziocacicia/dart_dependencies_manager.git
+      ref: main
+
   # Linting and Code analysis
   dart_lint_rules:
     git:
