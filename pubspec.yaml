@@ -15,7 +15,7 @@ dependencies:
   dart_dependencies_manager:
     git:
       url: git@github.com:fabriziocacicia/dart_dependencies_manager.git
-      ref: v1.0.1
+      ref: v1.0.2
 
 dev_dependencies:
 
