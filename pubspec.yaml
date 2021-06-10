@@ -1,6 +1,6 @@
 name: flutter_modules
 description: A library for implementing modularity in Flutter apps.
-version: 0.0.1
+version: 1.0.1
 publish_to: none
 
 environment:
