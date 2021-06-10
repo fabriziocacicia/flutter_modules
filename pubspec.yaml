@@ -11,12 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-dev_dependencies:
   # Dependency Injection
   dart_dependencies_manager:
     git:
       url: git@github.com:fabriziocacicia/dart_dependencies_manager.git
-      ref: main
+      ref: v1.0.2
+
+dev_dependencies:
+
 
   # Linting and Code analysis
   effective_dart: ^1.3.1
