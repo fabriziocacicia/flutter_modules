@@ -18,10 +18,11 @@ dependencies:
       ref: v1.0.2
 
 dev_dependencies:
-
-
   # Linting and Code analysis
-  effective_dart: ^1.3.1
+  flutter_lint_rules:
+    git:
+      url: git@github.com:fabriziocacicia/flutter_lint_rules.git
+      ref: v0.0.2
 
 flutter:
 
