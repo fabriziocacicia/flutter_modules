@@ -12,9 +12,10 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
   /// The [moduleBuilder] is a function that returns an instance of the
   /// [ModuleBase] that has to be injected.
   ModuleInjector({
+    final Key? key,
     required final this.moduleBuilder,
     required final this.widgetBuilder,
-  }) {
+  }) : super(key: key) {
     _registerModule(moduleBuilder());
   }
 

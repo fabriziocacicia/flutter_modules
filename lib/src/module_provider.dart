@@ -12,7 +12,10 @@ import 'module_base.dart';
 /// otherwise an Exception will be thrown.
 class ModuleProvider<T extends ModuleBase> extends StatelessWidget {
   /// Creates a [ModuleProvider] widget.
-  ModuleProvider({required final this.builder});
+  ModuleProvider({
+    final Key? key,
+    required final this.builder,
+  }) : super(key: key);
 
   /// A function that build the child widget and provide the requested
   /// [ModuleBase] to it from its arguments.
