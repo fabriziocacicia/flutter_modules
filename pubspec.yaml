@@ -21,10 +21,12 @@ dev_dependencies:
 
 
   # Linting and Code analysis
-  dart_lint_rules:
+  flutter_lint_rules:
     git:
-      url: git@github.com:fabriziocacicia/dart_lint_rules.git
-      ref: v0.2.0
+      url: git@github.com:fabriziocacicia/flutter_lint_rules.git
+      ref: v0.0.4
 
   # Testing
   test: ^1.22.0
+  
+flutter:
