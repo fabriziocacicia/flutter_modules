@@ -12,6 +12,7 @@ import 'module_base.dart';
 /// otherwise an Exception will be thrown.
 class ModuleProvider<T extends ModuleBase> extends StatelessWidget {
   /// Creates a [ModuleProvider] widget.
+  // ignore: prefer_const_constructors_in_immutables
   ModuleProvider({
     final Key? key,
     required final this.builder,
