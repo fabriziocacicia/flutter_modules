@@ -20,6 +20,10 @@ abstract class ModuleBase {
 
   /// Register a dependency.
   /// Be sure to provide both the type [T] and the [dependency] instance.
-  void registerDependency<T extends Object>(T dependency) =>
-      DependenciesManager.registerLazySingleton<T>(dependency);
+  void registerDependency<T extends Object>(
+    Future<T> Function() dependencyBuilder, {
+    Iterable<Type>? dependsOn,
+  }) =>
+      DependenciesManager.registerSingletonAsync(
+          factoryFunction: dependencyBuilder, dependsOn: dependsOn);
 }
