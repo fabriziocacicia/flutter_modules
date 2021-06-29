@@ -30,18 +30,22 @@ class ModuleProvider<T extends ModuleBase> extends StatelessWidget {
   final WidgetBuilder moduleNotFoundBuilder;
 
   @override
-  Widget build(BuildContext context) => FutureBuilder<T>(
-        future: Future.value(DependenciesManager.retrieve<T>()),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return moduleLoadingBuilder(context);
+  Widget build(BuildContext context) {
+    final module = DependenciesManager.retrieve<T>();
+
+    return FutureBuilder(
+      future: module.ready(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return moduleLoadingBuilder(context);
+        } else {
+          if (snapshot.hasData) {
+            return moduleFoundBuilder(context, module);
           } else {
-            if (snapshot.hasData) {
-              return moduleFoundBuilder(context, snapshot.data!);
-            } else {
-              return moduleNotFoundBuilder(context);
-            }
+            return moduleNotFoundBuilder(context);
           }
-        },
-      );
+        }
+      },
+    );
+  }
 }
