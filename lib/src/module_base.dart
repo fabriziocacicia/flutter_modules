@@ -24,4 +24,8 @@ abstract class ModuleBase {
       Future<T> Function() dependencyBuilder) async {
     DependenciesManager.registerSingletonAsync<T>(dependencyBuilder);
   }
+
+  Future<bool> areAllDependenciesReady() async {
+    return DependenciesManager.areAllReady();
+  }
 }
