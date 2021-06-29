@@ -16,7 +16,7 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
     required final this.moduleBuilder,
     required final this.widgetBuilder,
   }) : super(key: key) {
-    _registerModule(moduleBuilder());
+    _registerModule(() async => moduleBuilder());
   }
 
   /// Builds the [ModuleBase] that will be injected in the widget tree.
@@ -33,6 +33,6 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
         return widgetBuilder(context, module);
       });
 
-  void _registerModule(final T module) =>
-      DependenciesManager.registerLazySingleton<T>(module);
+  void _registerModule(final Future<T> Function() module) =>
+      DependenciesManager.registerSingletonAsync<T>(module);
 }
