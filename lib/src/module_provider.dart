@@ -31,7 +31,7 @@ class ModuleProvider<T extends ModuleBase> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FutureBuilder<T>(
-        future: DependenciesManager.retrieveAsync<T>(),
+        future: Future.value(DependenciesManager.retrieve<T>()),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return moduleLoadingBuilder(context);
