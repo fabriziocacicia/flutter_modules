@@ -23,6 +23,5 @@ abstract class ModuleBase {
   Future<void> registerDependency<T extends Object>(
       Future<T> Function() dependencyBuilder) async {
     DependenciesManager.registerSingletonAsync<T>(dependencyBuilder);
-    await DependenciesManager.retrieveAsync<T>();
   }
 }
