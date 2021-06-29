@@ -20,6 +20,9 @@ abstract class ModuleBase {
   /// returns it.
   T getDependency<T extends Object>() => DependenciesManager.retrieve<T>();
 
+  Future<T> solveDependency<T extends Object>() =>
+      DependenciesManager.retrieveAsync<T>();
+
   /// Register a dependency.
   /// Be sure to provide both the type [T] and the [dependency] instance.
   Future<void> registerDependency<T extends Object>(
