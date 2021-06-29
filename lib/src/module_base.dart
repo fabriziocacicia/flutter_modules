@@ -16,8 +16,7 @@ abstract class ModuleBase {
 
   /// Finds a dependency of type [T] from the already registered ones and
   /// returns it.
-  Future<T> getDependency<T extends Object>() =>
-      DependenciesManager.retrieveAsync<T>();
+  T getDependency<T extends Object>() => DependenciesManager.retrieve<T>();
 
   /// Register a dependency.
   /// Be sure to provide both the type [T] and the [dependency] instance.
