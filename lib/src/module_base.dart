@@ -1,5 +1,7 @@
 import 'package:dart_dependencies_manager/dart_dependencies_manager.dart';
 
+import 'exceptions.dart';
+
 /// The base class for a module.
 abstract class ModuleBase {
   /// Default constructor.
@@ -27,5 +29,14 @@ abstract class ModuleBase {
 
   Future<bool> areAllDependenciesReady() async {
     return DependenciesManager.areAllReady();
+  }
+
+  Future<ModuleBase> ready() async {
+    final isReady = await DependenciesManager.areAllReady();
+    if (isReady) {
+      return this;
+    } else {
+      throw ModuleNotReadyException();
+    }
   }
 }
