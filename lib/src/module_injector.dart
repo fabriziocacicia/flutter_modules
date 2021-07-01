@@ -14,7 +14,9 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
   ModuleInjector({
     final Key? key,
     required final this.moduleBuilder,
-    required final this.widgetBuilder,
+    required final this.moduleFoundBuilder,
+    required final this.moduleLoadingBuilder,
+    required final this.moduleNotFoundBuilder,
   }) : super(key: key) {
     _registerModule(moduleBuilder());
   }
@@ -25,14 +27,18 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
   /// The builder where the child [Widget] is defined.
   /// This method should not have side effects since it could be called multiple
   /// times as it is called inside the [build] method.
-  final ModulefulWidgetBuilder widgetBuilder;
+  final ModulefulWidgetBuilder moduleFoundBuilder;
+
+  final WidgetBuilder moduleLoadingBuilder;
+
+  final WidgetBuilder moduleNotFoundBuilder;
 
   @override
-  Widget build(BuildContext context) =>
-      ModuleProvider<T>(builder: (context, module) {
-        return widgetBuilder(context, module);
-      });
+  Widget build(BuildContext context) => ModuleProvider<T>(
+        moduleFoundBuilder: moduleFoundBuilder,
+        moduleLoadingBuilder: moduleLoadingBuilder,
+        moduleNotFoundBuilder: moduleNotFoundBuilder,
+      );
 
-  void _registerModule(final T module) =>
-      DependenciesManager.registerLazySingleton<T>(module);
+  void _registerModule(final T module) => DependenciesManager.register(module);
 }

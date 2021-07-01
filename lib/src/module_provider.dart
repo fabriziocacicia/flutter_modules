@@ -1,4 +1,5 @@
 import 'package:dart_dependencies_manager/dart_dependencies_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'builders.dart';
@@ -15,14 +16,36 @@ class ModuleProvider<T extends ModuleBase> extends StatelessWidget {
   // ignore: prefer_const_constructors_in_immutables
   ModuleProvider({
     final Key? key,
-    required final this.builder,
+    required final this.moduleFoundBuilder,
+    required final this.moduleLoadingBuilder,
+    required final this.moduleNotFoundBuilder,
   }) : super(key: key);
 
   /// A function that build the child widget and provide the requested
   /// [ModuleBase] to it from its arguments.
-  final ModulefulWidgetBuilder<T> builder;
+  final ModulefulWidgetBuilder<T> moduleFoundBuilder;
+
+  final WidgetBuilder moduleLoadingBuilder;
+
+  final WidgetBuilder moduleNotFoundBuilder;
 
   @override
-  Widget build(BuildContext context) =>
-      builder(context, DependenciesManager.retrieve<T>());
+  Widget build(BuildContext context) {
+    final module = DependenciesManager.retrieve<T>();
+
+    return FutureBuilder(
+      future: module.ready(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return moduleLoadingBuilder(context);
+        } else {
+          if (snapshot.hasData) {
+            return moduleFoundBuilder(context, module);
+          } else {
+            return moduleNotFoundBuilder(context);
+          }
+        }
+      },
+    );
+  }
 }
