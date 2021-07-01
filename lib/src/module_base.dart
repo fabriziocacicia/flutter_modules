@@ -27,18 +27,14 @@ abstract class ModuleBase {
   /// Be sure to provide both the type [T] and the [dependency] instance.
   Future<void> registerDependency<T extends Object>(
       Future<T> Function() dependencyBuilder) async {
-    DependenciesManager.registerSingletonAsync<T>(dependencyBuilder);
-  }
-
-  Future<bool> areAllDependenciesReady() async {
-    return DependenciesManager.areAllReady();
+    DependenciesManager.registerAsync<T>(dependencyBuilder);
   }
 
   Future<ModuleBase> ready() async {
-    final isReady = await DependenciesManager.areAllReady();
-    if (isReady) {
+    try {
+      await DependenciesManager.resolve();
       return this;
-    } else {
+    } catch (_) {
       throw ModuleNotReadyException();
     }
   }
