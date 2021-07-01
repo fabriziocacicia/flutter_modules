@@ -41,5 +41,5 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
       );
 
   void _registerModule(final T module) =>
-      DependenciesManager.registerLazySingleton(module);
+      DependenciesManager.register(module);
 }

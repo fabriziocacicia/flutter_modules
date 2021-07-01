@@ -15,7 +15,7 @@ dependencies:
   dart_dependencies_manager:
     git:
       url: git@github.com:fabriziocacicia/dart_dependencies_manager.git
-      ref: feat/single_instance_accross_multiple_packages
+      ref: v1.1.0
 
 dev_dependencies:
   # Linting and Code analysis
