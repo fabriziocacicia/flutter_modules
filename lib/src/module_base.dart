@@ -20,6 +20,10 @@ abstract class ModuleBase {
   /// returns it.
   T getDependency<T extends Object>() => DependenciesManager.retrieve<T>();
 
+
+  /// Solves a requested dependency awaiting until it is ready.
+  /// This should be called to get the requested dependency when it's needed
+  /// in order to create and register another dependencies.
   Future<T> solveDependency<T extends Object>() =>
       DependenciesManager.retrieveAsync<T>();
 
@@ -30,6 +34,9 @@ abstract class ModuleBase {
     DependenciesManager.registerAsync<T>(dependencyBuilder);
   }
 
+  /// This method completes when all the dependencies registered inside the
+  /// module are resolved.
+  /// Call it and await its Future completes, then you are ready to use it.
   Future<ModuleBase> ready() async {
     try {
       await DependenciesManager.resolve();
