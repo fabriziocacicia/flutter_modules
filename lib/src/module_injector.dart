@@ -40,6 +40,5 @@ class ModuleInjector<T extends ModuleBase> extends StatelessWidget {
         moduleNotFoundBuilder: moduleNotFoundBuilder,
       );
 
-  void _registerModule(final T module) =>
-      DependenciesManager.register(module);
+  void _registerModule(final T module) => DependenciesManager.register(module);
 }

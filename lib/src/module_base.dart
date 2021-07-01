@@ -20,7 +20,6 @@ abstract class ModuleBase {
   /// returns it.
   T getDependency<T extends Object>() => DependenciesManager.retrieve<T>();
 
-
   /// Solves a requested dependency awaiting until it is ready.
   /// This should be called to get the requested dependency when it's needed
   /// in order to create and register another dependencies.
