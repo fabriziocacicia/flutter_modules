@@ -1,5 +1,8 @@
 ## UNRELEASED
 
+
+## 2.0.0
+
 - Added the ability to provide a Key to the `ModuleInjector` and the `ModuleProvider`
 - Make the registration of dependencies asynchronous improving the resolution capabilities 
   enabling the possibility to declare dependencies in different packages
